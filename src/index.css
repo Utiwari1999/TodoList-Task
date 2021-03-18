@@ -7,7 +7,19 @@
 
 .scroll_list {
   overflow-y: scroll;
-  height: 200px;
+  height: 180px;
+}
+
+.toast-body{
+  position: absolute;
+  height: 45px;
+  width: 35%;
+  top: 60px;
+  background-color: #4cb4ec;
+  border-radius: 27px;
+  padding: 10px;
+  color: white;
+  font-size: 19px;
 }
 
 .main_div{

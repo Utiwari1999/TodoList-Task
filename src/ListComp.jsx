@@ -19,6 +19,7 @@ const ListComp = (props) => {
 
     const deleteNote = () => {
         if(line === false){
+            props.setShow(true);
         } else {
             props.deleteItem(props.id);
         }
@@ -31,7 +32,7 @@ const ListComp = (props) => {
                     <DeleteIcon className="deleteIcon" />
                 </span>
                 <span onClick={deleteNote}>
-                    <Popup className="closeIcon" />
+                <i className="fa fa-times-circle" style={{fontSize:"40px",color:"red",marginRight:"10px",cursor:"pointer"}} ></i>
                 </span>
                 <li style={{textDecoration: line ? 'line-through' : 'none'}}>{props.text}</li>
             </div>

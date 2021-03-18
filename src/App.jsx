@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import ListComp from './ListComp';
 import SearchIcon from '@material-ui/icons/Search';
+import Toast from 'react-bootstrap/Toast';
 // import Toast from 'react-bootstrap/Toast';
 // import SanitizedHTML from 'react-sanitized-html';
 
@@ -119,7 +120,7 @@ const App = () => {
     const [search, setSearch] = useState("");
     const [filteredTasks, setFilteredTasks] = useState([]);
 
-    // const [showPopup, setShow] = useState(false);
+    const [show, setShow] = useState(false);
 
 
     
@@ -153,9 +154,23 @@ const App = () => {
     //     );
     //   }
 
+    function Warning(props) {
+
+        return (
+              <Toast onClose={() => {props.setShow(false)}} className="CreatedLPToast" show={props.show} delay={3000} autohide>
+                <div className="" style={{width:"25px"}}>
+                 <Toast.Body className="">
+                     Uncompleted Tasks cannot be deleted <i className="fa fa-warning" style={{color:"yellow",marginRight:"30px"}}></i>  <span onClick={()=>{props.setShow(false)}}><i className="fa fa-window-close"></i></span>
+                 </Toast.Body>
+                </div>
+              </Toast>
+        );
+      }
+
     return(
         <>
             <div className='main_div'>
+            <Warning show={show} setShow={setShow}/>
                 <div className='center_div'>
                     <br />
                         <h1>ToDo List</h1>
@@ -177,7 +192,7 @@ const App = () => {
                     <br />
                     <ol className='scroll_list'>
                         {filteredTasks.map((val, index) =>{
-                            return <ListComp id={index} key={index} text={val.title} content={val.content} time={val.time} deleteItem={onDelete} />;
+                            return <ListComp setShow={setShow} id={index} key={index} text={val.title} content={val.content} time={val.time} deleteItem={onDelete} />;
                         })}
                     </ol>
                     <br />
