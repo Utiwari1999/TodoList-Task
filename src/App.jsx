@@ -2,6 +2,8 @@ import React, { useState,useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import ListComp from './ListComp';
+import SearchIcon from '@material-ui/icons/Search';
+// import Toast from 'react-bootstrap/Toast';
 // import SanitizedHTML from 'react-sanitized-html';
 
 const App = () => {
@@ -117,6 +119,8 @@ const App = () => {
     const [search, setSearch] = useState("");
     const [filteredTasks, setFilteredTasks] = useState([]);
 
+    // const [showPopup, setShow] = useState(false);
+
 
     
     useEffect(() => {
@@ -135,6 +139,20 @@ const App = () => {
     //       );
     //   }
 
+    // ----------------------------------------------------------
+
+    // function InvalidDepToast(props) {
+
+    //     return (
+    //           <Toast onClose={() => props.setShow(false)} className="CreatedLPToast" show={props.showPopup} delay={3000} autohide>
+    //             <div className="ToastBody" style={{width:"625px"}}>
+    //              <Toast.Body className="ToastBodySpan">
+    //              </Toast.Body>
+    //             </div>
+    //           </Toast>
+    //     );
+    //   }
+
     return(
         <>
             <div className='main_div'>
@@ -145,9 +163,10 @@ const App = () => {
                     <input
                         style={{marginBottom:'20px'}}
                         type="text"
-                        placeholder="Search Tasks"
-                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search Tasks 🔍" 
+                        onChange={(e) => {if(e.target.value.length >=3){setSearch(e.target.value)}else{setFilteredTasks(newitem)}}}
                     />
+                    
                     <br />
                     <input minLength='5' maxLength='30' name="title" type='text' placeholder='Title' value={item.title} onChange={enteredData} />
                     <textarea maxlength='140' name="content" rows='' column='' placeholder='Write a note' value={item.content} onChange={enteredData}></textarea>
@@ -156,7 +175,7 @@ const App = () => {
                     </Button>
 
                     <br />
-                    <ol>
+                    <ol className='scroll_list'>
                         {filteredTasks.map((val, index) =>{
                             return <ListComp id={index} key={index} text={val.title} content={val.content} time={val.time} deleteItem={onDelete} />;
                         })}
@@ -164,6 +183,7 @@ const App = () => {
                     <br />
                 </div>
             </div>
+            {/* <InvalidDepToast show={showPopup} setShow={setShow} /> */}
         </>
     );
 }
