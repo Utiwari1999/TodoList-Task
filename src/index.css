@@ -41,6 +41,13 @@
   border-radius: 25px;
 }
 
+.new_div{
+  width: 25%;
+  height: 70vh;
+  background-color: #f4f4f4;
+  border-radius: 25px;
+}
+
 
 h1 {
   color: rgba(0, 0, 0, 0.87);
@@ -212,11 +219,3 @@ ol li {
   }
 
 }
-
-
-
-
-
-
-
-
